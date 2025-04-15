@@ -1,0 +1,11 @@
+autor recenze v textu uvadi ( psano cervene ) 
+tipy napr. cituju "Pokud chtere funkci skenovani vypnout, nastavte prepinac na 16 kanal,
+pak podrzte tlacitko PTT + MONI a stanici zapnete"
+moje poznatky v tomto :
+prepinac poloha 16, PTT+MONI+ON = skenovani zapnou/vypnout
+10, PTT+MONI+ON = mluveni stanice zapnout/vypnout
+15, PTT+MONI+ON = prepinani hlasu mluveni anglictina/cinstina
+5, PTT+MONI+ON = vox on/off
+3, PTT+MONI+ON = pak je jeste neco taky na trojce tam to nic nerekne, jenom to pipne 
+                 nevim to jiste ale domnivam se ze to je prepinani vysilaciho vykonu low/high
+                 ale je to bez zaruky a nikde na internetu jsem se o tom nic nedocetl :(
