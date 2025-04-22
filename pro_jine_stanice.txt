@@ -1,0 +1,44 @@
+
+verim tomu ze tento program by sel velmi jednoduse predelat i pro jine stanice jako je napr. popularni 
+Baofeng UV-5R, Quansheng UV-k5, ruzny "CB" stanice apod.
+v programu Chirp naimportujete pres kabel data z vasi konkretni radiostanice ( Atl-d )
+v menu programu Chirp vybrete polozku "Soubor" dale pak polozku "Export to CSV" ( Ctrl+e )
+ulozte soubor "csv" nekam do pocitace
+soubor "csv" je samozdrejme upne obycejni textovy ascii soubor ktery ma pouze misto pripony "txt" priponu "csv"
+a lze si proto jeho obsah prohlednou v podstate jakemkoliv textovem editoru, pocinaje poznamkovym blokem ve Windows
+takze ho klidne rovnou muzete prejmenovat treba na "export_Baodfeng_UV5R.csv.txt" apod. ( obevil jsem ze Windows se take daji pozit dve pripony tak jako na linuxu, coz se vzdy hodi ze :)
+prohlednete si a porovnejte obsah vaseho "csv" souboru z vystupem meho programu do "csv"
+provedte ve vasem skriptu patricne upravy, verim tomu ze budou opravdu minimalni, co by se pravdepodobne mohlo
+trochu lisit bude promenna "$vrsek", "$vloz_stred_x" a asi nejaka ta hodnota vykonu a to bude asi vsechno
+vystup v vaseho upraveneho programu potom porovnejte stim souborem ktery jste jak jsem psal na zacatky exportovali
+z programu Chirp a skuste ho naimportovat, paklize je vse v poradku obevi se znama tabulka hodnot
+pozn. provadel jsem pokusy jako napr. ze jsem na "PMR" pasmu zapsal do "csv" souboru "AM" modulaci a po importu
+do Chirp program zahlasil upozorneni "ze nelze zde AM pouzit" a dokce to i sam opravil takze ve sloupci "mode" bylo 
+pak spravne "FM" takze je to trosku blbuvzdorny a program v sobe nejaky osetreni chyb uz ma
+dulezite je v Chirpu v napred otevrit prazdny soubor "img" a do neho potom teprve importovat "csv" ne rovnou otevrit
+primo "csv" muze se pak obevit chyba jako napr. ze prvni radek bude prazdni a bude se zacinat az na radku druhem
+pri dodrzni postupu napred pradny "img" a do nej pak import "csv" se toto nestavalo a tabulka byla presne takova jaka ma by. prazdny soubor "img" pro vasi konkretni stanici si snadno vytvorite po nacteni dat po kabelu z vasi stanice
+stisnete kombinaci klaves ( Ctrl+a ) pro oznaceni cele tabulky a az bude vse oznaceno tak dejte ( Ctrl+x ) jsou
+to polozky v menu "Upravit" -> "Vybrat sve" a "Upravit" -> "Vyjmout" takovyto prazdny soubor pak ulozte "Soubor" ->
+"Ulozit jako..." ( Atl+Ctrl+s ) a nazev treba "prazdny_soubor_pro_Baofeng_UV5R.img"
+az toto budete mit tak spuste ve stejnem adrsari jako bude tento vas soubor "*.img" utilitku "all_img_file_bat_1.ps1"
+pripadne jeji "exe" verzi "all_img_file_bat_1.exe" a ona vam vytvori ke kazdemu souboru "*.img" ktery v adrsari
+nalezne prislusni soubor "*.BAT" ktery bude obsahovat napr. toto
+"C:\Program Files (x86)\CHIRP\chirpwx.exe" "prazdny_soubor_pro_Baofeng_UV5R.img"
+uz jsem to psal jinde ale pokud se programu Chirp jako prvni parametr napr. "$args[0]" chcete li
+rekne nejaky nazev souboru "*.img" spusti se a rovnou ho otevre a neni pak potreba napred otevrit
+program Chirp pak dat v menu "Soubor" -> "Otevrit" potom hledat v pocitaci kde to je, samozdrejme se tim take
+predchazi chybam, protoze nejslabsi jak vsichni vime je vzdy ten lidskej clanek
+treba u "pmr" pasma kde je jenom 16 kanalu, tam by clovek nad tim i mavnul rukou, ale pomohlo mi to hodne
+u pasma "lpd" tady rucne sazet  69 kanalu to uz je docela masochismus, navic samozdrejme hrozi ze tam bude nekde
+chyba, takze to pak zase cely este kontorolovat... a nebo prenastovat u 69 kanalu jesli se ma preskakovat skenovani nebo ne, protoze jak jsem dodatecne zjistil "lpd" pasmo je vlastne az na par chrcaku a vrcaku docela prazdny a skonovat 69 kanulu zbytecne navic pak jenom zbytecne zdrzuje. muj program si samozdrejme muzete i rozsirit o me zatim nezname pasmo, v programu Chirp v menu "Soubor" -> "Open stock config" jsem toho nasel spoustu, "FR marine VHF" apod.
+vetsinu stoho neznam, muzete vyzkouset, samozdrejme duleziti je a na tom to cely stoji aby byl vzdy stejny osdkok
+mezi jednotlivejma kanalama, upravte tedy prisluzne hodnoty "$frekvence_min=", "$frekvence_krok=", "$nasobek=" a hodnotu poctu pruchodu "for" cyklem "$max_pametova_pozice_v_chirp=" a dalsich pak drobnosti jako je vykon, komentar
+program Chipr ma tu uzasnou vlastnost (coz jsem jinde nenasel) ze umoznuje pouzivat Ctrl+c, Ctrl+x, Ctrl+v jinymi slovy oznacit nejaky blok radku, nakopirovat ho doschranky a pak ho zase pres schranku Ctrl+v umistit nekde jinde, hromadne mazat radky, tyhle funkce kopirovani, mazani, presouvani povazuju pri praci s takovimto obemem dat za nejdulezitejsi, doporucuji si take precist zde na gitu obsah meho repozirate "FAQ_PowerShell" kde jsou docela dulezity informace a nebo si program proste prepiste do vaseho oblibeneho jazyka at uz je to C++, Python nebo cokoliv jineho
+
+22.4.2024 autor
+
+PS: vite ze prochram Chirp je napsany v jazyku Python, uprimne se divim ze tuto funkcionalitu kterou zde takto dlouze
+popisuju uz v sobe program sam o sobe nema a je potreba ktomu jeste neco dalsiho vymislet
+da se jim tam mozna napsat, polozka "Napoveda" -> "Report or update a bug..." udelejte to nekdo, paklize to pujde
+
