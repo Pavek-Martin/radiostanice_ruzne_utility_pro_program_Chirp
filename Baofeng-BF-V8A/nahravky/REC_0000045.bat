@@ -16,7 +16,7 @@ REM set end=00:00:54.000
 REM "end" muze bejt stejne jako "b" ( takze staci jenom "b" )
 REM asi spracovava ty parametry postupne ( cekal bych ze bude delat bordel kdyz bude "end" uplne stejny jako "b")
 REM ale nedeje se tak
-set count=1
+set count=2
 REM count je 2 a pritom opakuje 3x ( nazjisteno proc ? )
 set s=0.8
 REM keca docela neprirozene ryche takze 80 procent rychlosti pouze
@@ -35,6 +35,7 @@ echo --end=%b%
 echo filename - %filename%
 
 echo mpv --speed=%s% --volume=%v% --start=%a% --ab-loop-count=%count% --ab-loop-a=%a% --ab-loop-b=%b% --end=%b% %filename%
+echo Delta, Bravo, Null, Lima, Alfa, Uniform ...
 mpv --speed=%s% --volume=%v% --start=%a% --ab-loop-count=%count% --ab-loop-a=%a% --ab-loop-b=%b% --end=%b% %filename%
 
 sleep 2

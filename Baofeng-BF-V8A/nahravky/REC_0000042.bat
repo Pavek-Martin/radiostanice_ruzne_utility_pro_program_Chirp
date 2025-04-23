@@ -67,8 +67,10 @@ echo --ab-loop-b=%b%
 echo --end=%b%
 echo filename - %filename%
 
-echo mpv --speed=%s% --start=%a%  --ab-loop-count=%count% --ab-loop-a=%a% --ab-loop-b=%b% --end=%b% %filename%
-mpv --speed=%s% --start=%a%  --ab-loop-count=%count% --ab-loop-a=%a% --ab-loop-b=%b% --end=%b% %filename%
+echo mpv --speed=%s% --start=%a% --ab-loop-count=%count% --ab-loop-a=%a% --ab-loop-b=%b% --end=%b% %filename%
+echo -../-.../-----/.-../.-/..-
+echo  D   B     0    L   A   U 
+mpv --speed=%s% --start=%a% --ab-loop-count=%count% --ab-loop-a=%a% --ab-loop-b=%b% --end=%b% %filename%
 sleep 2
 :konec
 @echo on
