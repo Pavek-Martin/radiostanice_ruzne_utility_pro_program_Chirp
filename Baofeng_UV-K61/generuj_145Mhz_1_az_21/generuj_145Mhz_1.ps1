@@ -22,7 +22,7 @@ $pole_file_CSV_output += $vrsek
 $vloz_stred_1 = ",,0.000000,,88.5,88.5,023,NN,023,Tone->Tone,"
 
 $vloz_stred_2 = ",5.00,," # az se zjisti jak na to
-$vloz_stred_3 = ",5.00,S," # bude prekakova skenovani
+$vloz_stred_3 = ",5.00,S," # bude preskakovat skenovani
 
 ############## zde edit zona ###################
 $export_CSV_filename = "Baofeng_UK-K61_145Mhz_1_az_21.csv"
@@ -31,7 +31,7 @@ Remove-Item $export_CSV_filename -force -ErrorAction SilentlyContinue
 sleep 1
 #
 $frekvence_min = 145.500 # toto bude v CHipu na pametove pozici jedna, (dalsi pozice 2 bude toto plus $frekvence_krok atd.)
-$frekvence_krok = 0.0025 # pro pmr vzdy stejny
+$frekvence_krok = 0.0025 # krok
 
 $max_pametova_pozice_v_chirp = 21# max. polozek v chirp
 #
@@ -65,15 +65,21 @@ $radek +=","
 $x = $frekvence_min
 [string] $x2 = [Math]::Ceiling($x * 10000) / 10000 # tohle mi poradil Microsoft copilot AI :)
 #  napred vynasobit  krat 1000 aby se posunula desetina mista a pak vysledek opet zpatky vydeli 
-# cele cislo napr. "434"
+
+# upraveno 7.7.2025
+# pouze pro cele cislo napr. "433"
 if ($x2.Length -eq 3 ){
-$x2 = $x2 + ".000000"
+$x2 = $x2 + ".000000" # kdyz by bylo cislo pouze int tak doplni sest desetinych mist
 }
 
-# libovolne desetine cislo napr. "433.9, 433,85, 433.925"
-if ($x2 -gt 3 ){
-$x2 += $maska.Substring(0,10 - $x2.Length)
+# uprava pro libovolne desetine cislo kratsi nez 10 znaku, krome celeho cisla (3 ciska + tecka + 6 nul = 10 znaku)
+# napr. "433.9 -> 433.900000
+# 433,85 -> 433,850000
+# 433.925 -> 433.925000 atd.
+if ($x2.Length -lt 10 ){
+$x2 += $maska.Substring(0,10 - $x2.Length) # paklize nema delku 10 znaku, doplni na zbyvajici mista znak/y nula
 }
+# konec 7.7.2025
 
 $radek += $x2
 # konec radku frekvence <<<
@@ -102,14 +108,12 @@ $pole_file_CSV_output += $radek
 }
 
 echo $pole_file_CSV_output
-#echo "---"
-#echo "46,LPD 69,434.775000,,0.000000,,88.5,88.5,023,NN,023,Tone->Tone,FM,5.00,,1.0W,,,,, toto je v cvs"
 
 # export do souboru *.CSV
 Set-Content $export_CSV_filename -Encoding ASCII -Value $pole_file_CSV_output
 echo ""
 echo "HOTOVO, toto ulozeno do souboru : $export_CSV_filename"
-sleep 5
+sleep 20
 
 
 
