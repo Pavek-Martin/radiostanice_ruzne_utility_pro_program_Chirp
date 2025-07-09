@@ -25,6 +25,8 @@ for ( $aa = 1; $aa -le $max; $aa++){
 $x = $frekvence
 [string] $x2 = [Math]::Ceiling($x * 10000) / 10000 # tohle mi poradil Microsoft copilot AI :)
 
+#$x2 = "145.2325000000" # test, pro delsi nz 10 znaku celkem
+
 if ($x2.Length -eq 3 ){ # pouze pro cela cisla 
 $x2 = $x2 + ".000000" # nechat jak je
 }
@@ -32,17 +34,23 @@ $x2 = $x2 + ".000000" # nechat jak je
 # doplni zbyvajici nuly na konci, vzdy do celkove delky 10 znaku (3 cisla + tecka + 6 desetin = 10 znaku celkem) 
 if ($x2.Length -lt 10 ){
 $x2 += $maska.Substring(0, 10 - $x2.Length)
+} else { # pokud by bylo nahodou vice nez 10 znaku
+#echo "bylo vice naz 10 znaku !"
+$x2 = $x2.Substring(0, 10) # delsi nez 10 znaku zkrati na 10
 }
+# osetreno proti cemukoliv
+
 
 echo $x2
 $pole_out += $x2
 
-$frekvence += $krok
 
+$frekvence += $krok
 }
 
 # export do souboru
-Set-Content "output.txt" -Encoding ASCII -Value $pole_out
-echo "toto ulozeno do souboru - output.txt"
+$file_output = "test_2.txt"
+Set-Content $f -Encoding ASCII -Value $pole_out
+echo "toto ulozeno do souboru - $file_output"
 sleep 10
 
